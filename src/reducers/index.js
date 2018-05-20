@@ -22,8 +22,18 @@ export default function tasks(state = { tasks: mockTasks }, action) {
       ', \n\taction = ' +
       JSON.stringify(action)
   );
-  if (action.type === 'CREATE_TASK') {
-    return { tasks: state.tasks.concat(action.payload) };
+
+  switch (action.type) {
+    case 'CREATE_TASK':
+      return { tasks: state.tasks.concat(action.payload) };
+    case 'UPDATE_TASK':
+      var updatedTasks = state.tasks.slice();
+      var updatedTaskIndex = updatedTasks.findIndex(
+        obj => obj.id == action.payload.id
+      );
+      updatedTasks[updatedTaskIndex] = action.payload;
+      return { tasks: updatedTasks };
+    default:
+      return state;
   }
-  return state;
 }

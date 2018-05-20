@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 import TaskList from './TaskList';
 
 const TASK_STATUSES = ['Unstarted', 'In Progress', 'Completed'];
@@ -23,7 +25,7 @@ class TasksPage extends Component {
 
   resetForm() {
     this.setState({
-      showNewCardFrom: false,
+      showNewCardForm: false,
       title: '',
       description: ''
     });
@@ -43,10 +45,17 @@ class TasksPage extends Component {
   };
 
   renderTaskLists() {
-    const { tasks } = this.props;
+    const { tasks, onUpdateTask } = this.props;
     return TASK_STATUSES.map(status => {
       const statusTasks = tasks.filter(task => task.status === status);
-      return <TaskList key={status} status={status} tasks={statusTasks} />;
+      return (
+        <TaskList
+          key={status}
+          status={status}
+          tasks={statusTasks}
+          onUpdateTask={onUpdateTask}
+        />
+      );
     });
   }
 
@@ -86,4 +95,4 @@ class TasksPage extends Component {
   }
 }
 
-export default TasksPage;
+export default DragDropContext(HTML5Backend)(TasksPage);
