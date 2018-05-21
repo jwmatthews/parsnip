@@ -17,7 +17,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "precommit": "pretty-quick staged",
-    "lint": "./node_modules/.bin/eslint src"
+    "lint": "./node_modules/.bin/eslint src",
+    "deploy": "aws s3 sync build/ s3://jwmparsnip && echo 'Visit http://jwmparsnip.s3-website-us-east-1.amazonaws.com'"
   },
   "devDependencies": {
     "@types/react": "^16.3.14",
