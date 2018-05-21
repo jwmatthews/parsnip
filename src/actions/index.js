@@ -15,25 +15,13 @@ export function createTask({ title, description, status = 'Unstarted' }) {
   };
 }
 
-export function updateTask({ id, title, description, status }) {
-  console.log(
-    'actions.updateTask(' +
-      id +
-      ', ' +
-      title +
-      ', ' +
-      description +
-      ', ' +
-      status +
-      ')'
-  );
+export function updateTask(id, params = {}) {
+  console.log('actions.updateTask(' + id + ', ' + JSON.stringify(params) + ')');
   return {
     type: 'UPDATE_TASK',
     payload: {
-      id: id,
-      title,
-      description,
-      status: status
+      id,
+      params
     }
   };
 }

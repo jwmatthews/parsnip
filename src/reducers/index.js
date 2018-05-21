@@ -27,12 +27,15 @@ export default function tasks(state = { tasks: mockTasks }, action) {
     case 'CREATE_TASK':
       return { tasks: state.tasks.concat(action.payload) };
     case 'UPDATE_TASK':
-      var updatedTasks = state.tasks.slice();
-      var updatedTaskIndex = updatedTasks.findIndex(
-        obj => obj.id == action.payload.id
-      );
-      updatedTasks[updatedTaskIndex] = action.payload;
-      return { tasks: updatedTasks };
+      const { payload } = action;
+      return {
+        tasks: state.tasks.map(task => {
+          if (task.id === payload.id) {
+            return Object.assign({}, task, payload.params);
+          }
+          return task;
+        })
+      };
     default:
       return state;
   }

@@ -24,7 +24,7 @@ const taskSource = {
         JSON.stringify(props)
     );
 
-    props.onUpdateTask({ ...task, status: dropResult.status });
+    props.onUpdateTask(task.id, { status: dropResult.status });
   }
 };
 

@@ -20,7 +20,12 @@ const TaskList = props => {
   const { connectDropTarget, isOver } = props;
   return connectDropTarget(
     <div className="task-list">
-      <div className="task-list-title">
+      <div
+        className="task-list-title"
+        style={{
+          color: isOver ? 'blue' : 'black'
+        }}
+      >
         <strong>{props.status}</strong>
       </div>
       {props.tasks.map(task => (

@@ -7,8 +7,8 @@ class App extends Component {
   onCreateTask = ({ title, description }) => {
     this.props.dispatch(createTask({ title, description }));
   };
-  onUpdateTask = ({ id, title, description, status }) => {
-    this.props.dispatch(updateTask({ id, title, description, status }));
+  onUpdateTask = (id, params = {}) => {
+    this.props.dispatch(updateTask(id, params));
   };
 
   render() {
