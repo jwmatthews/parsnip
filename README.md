@@ -6,3 +6,6 @@ This project is based on the tutorial from https://www.manning.com/books/redux-i
 A running version is available from S3 here:
     http://jwmparsnip.s3-website-us-east-1.amazonaws.com
 
+### Run simple backend with json-server
+1. npm install --global json-server
+2. json-server --watch db.json --port 3001
